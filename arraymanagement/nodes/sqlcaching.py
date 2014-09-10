@@ -1,4 +1,5 @@
 from __future__ import print_function
+from six.moves import cPickle as pickle
 
 import posixpath
 import collections
@@ -8,9 +9,8 @@ import pandas as pd
 from pandas.io import sql
 import json
 import itertools
-import cPickle as pickle
 import hashlib
-from arraymanagement.nodes.hdfnodes import (PandasCacheableTable, 
+from arraymanagement.nodes.hdfnodes import (PandasCacheableTable,
                                             write_pandas_hdf_from_cursor,
                                             write_pandas,
                                             override_hdf_types,

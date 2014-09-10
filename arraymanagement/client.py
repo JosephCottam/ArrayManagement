@@ -27,11 +27,16 @@ class ArrayClient(Node):
 
         try:
             self.raw_config = __import__(configname, fromlist=[''])
-        except ImportError:
+        except ImportError as e:
             default_configname = "arraymanagement.defaultconfig"
             log.error("could not load config %s", configname)
-            log.error("iporting default config %s instead", default_configname)
+            log.error(e)
+            log.error("importing default config %s instead", default_configname)
+            log.error("--------------")
             self.raw_config = __import__(default_configname, fromlist=[''])
+        except AttributeError as e:
+            log.error("could not load config %s", configname)
+            log.error(e)
 
         self.config = self.get_config()
 

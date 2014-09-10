@@ -1,5 +1,4 @@
 from os.path import join, dirname, split, realpath, exists
-from six.moves import cPickle
 import json
 
 def jsload(path):
