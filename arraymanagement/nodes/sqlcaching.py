@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import posixpath
 import collections
 import numpy as np
@@ -545,8 +547,8 @@ class YamlSqlDateCaching(BulkParameterizedQueryTable):
                 return data
 
             else:
-                print 'something terrible has gone wrong'
-                print query_filter, hashval, start_date,end_date, max_date, min_date
+                print('something terrible has gone wrong')
+                print(query_filter, hashval, start_date,end_date, max_date, min_date)
 
 
         except KeyError:

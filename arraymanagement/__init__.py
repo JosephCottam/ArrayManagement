@@ -1,4 +1,5 @@
-import nodes.hdfnodes as hdfnodes
+from __future__ import absolute_import
+from .nodes import hdfnodes
 import tables.file
 
 def clear_mem_cache():

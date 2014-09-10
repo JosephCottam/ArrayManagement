@@ -5,7 +5,7 @@ import pandas as pd
 
 from .exceptions import ArrayManagementException
 import fnmatch
-from nodes import dirnodes
+from arraymanagement.nodes import dirnodes
 import sys
 
 def keys(context, overrides={}):
@@ -48,9 +48,9 @@ def get_node(key, context, overrides={}):
     else:
         files = [x for x in files if splitext(x)[0] == key]
         if len (files) > 1:
-            raise ArrayManagementException, 'multile files matching %s: %s' % (key, str(files))
+            raise ArrayManagementException('multile files matching %s: %s' % (key, str(files)))
         if len (files) == 0:
-            raise ArrayManagementException, 'No files matching %s' % (key)
+            raise ArrayManagementException('No files matching %s' % (key))
         fname = files[0]
     new_abspath = context.joinpath(fname)
     new_rpath = context.rpath(new_abspath)

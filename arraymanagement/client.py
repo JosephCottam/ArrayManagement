@@ -1,11 +1,12 @@
 #import databag
 import os
+from six.moves import reload_module
 from os.path import join, dirname, isdir, relpath, exists, abspath
-from config import NodeConfig
-import pathutils
-from nodes.dirnodes import DirectoryNode
-from nodes import Node, NodeContext
-import default_loader
+from arraymanagement.config import NodeConfig
+import arraymanagement.pathutils as pathutils
+from arraymanagement.nodes.dirnodes import DirectoryNode
+from arraymanagement.nodes import Node, NodeContext
+import arraymanagement.default_loader
 import sys
 import os
 import shutil
@@ -28,8 +29,8 @@ class ArrayClient(Node):
             self.raw_config = __import__(configname, fromlist=[''])
         except ImportError:
             default_configname = "arraymanagement.defaultconfig"
-            logger.error("could not load config %s", configname)
-            logger.error("iporting default config %s instead", default_configname)
+            log.error("could not load config %s", configname)
+            log.error("iporting default config %s instead", default_configname)
             self.raw_config = __import__(default_configname, fromlist=[''])
 
         self.config = self.get_config()
@@ -52,8 +53,8 @@ class ArrayClient(Node):
         if self.debug:
             if self.raw_config.local_config.get(urlpath) \
                     and self.raw_config.local_config.get(urlpath).get('__module__'):
-                reload(self.raw_config.local_config.get(urlpath).get('__module__'))
-            reload(self.raw_config)
+                reload_module(self.raw_config.local_config.get(urlpath).get('__module__'))
+            reload_module(self.raw_config)
         config = NodeConfig(urlpath,
                             parent_config,
                             self.raw_config.local_config.get(urlpath, {}))

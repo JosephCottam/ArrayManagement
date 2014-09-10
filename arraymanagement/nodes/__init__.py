@@ -1,3 +1,4 @@
+from six import string_types
 import posixpath
 import os
 from os.path import basename, splitext, join, dirname, isdir, isfile, relpath
@@ -208,7 +209,7 @@ def parse_back_compat(w, op=None, value=None):
 
             # stringify with quotes these values
             def convert(v):
-                if isinstance(v, (basestring, datetime,np.datetime64,timedelta,np.timedelta64)) or hasattr(v, 'timetuple'):
+                if isinstance(v, (string_types, datetime,np.datetime64,timedelta,np.timedelta64)) or hasattr(v, 'timetuple'):
                     return "'{0}'".format(str(v))
                 return v
 

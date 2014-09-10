@@ -1,3 +1,4 @@
+from __future__ import print_function
 import tempfile
 import datetime as dt
 from os.path import join, dirname, split, realpath, exists
@@ -74,11 +75,11 @@ def test_sql_yaml_cache():
 
     arr = client['/sqlviews/example_no_dates.yaml']
     aapl = arr.select(and_(arr.ticker.in_(['A','AA'])))
-    print aapl
+    print(aapl)
 
     arr = client['/sqlviews/example_no_dates_not_entities.yaml']
     aapl = arr.select(query_filter=None)
-    print aapl
+    print(aapl)
 
     query = arr.select(query_filter=None, IgnoreCache=True)
 
@@ -157,7 +158,7 @@ def test_sql_yaml_cache():
 #     arr = client['/sqlviews/flex_view.fdsql']
 #     store = arr.store
 #
-#     print '\n\n\nFull Selection'
+#     print('\n\n\nFull Selection')
 #
 #     date_1 = dt.datetime(2000,1,1)
 #     date_2 = dt.datetime(2003,12,30)
@@ -170,25 +171,25 @@ def test_sql_yaml_cache():
 #
 #
 #
-#     print '\n\n\nFull Right'
+#     print('\n\n\nFull Right')
 #     aapl = arr.select(and_(arr.ticker=='AAPL'), date_1 = dt.datetime(2004,1,1), \
 #                                 date_2 = dt.datetime(2005,12,30))
 #
-#     print '\n\n\nShifted Right'
+#     print('\n\n\nShifted Right')
 #     aapl = arr.select(and_(arr.ticker=='AAPL'), date_1 = dt.datetime(2004,12,30), \
 #                                 date_2 = dt.datetime(2008,12,30))
-#     print '\n\n\nInner Selection'
+#     print('\n\n\nInner Selection')
 #     aapl = arr.select(and_(arr.ticker=='AAPL'), date_1 = dt.datetime(2006,12,30), \
 #                                 date_2 = dt.datetime(2007,12,30))
 #
-#     print '\n\n\nShifted left'
+#     print('\n\n\nShifted left')
 #     aapl = arr.select(and_(arr.ticker=='AAPL'), date_1 = dt.datetime(1999,10,30), \
 #                                 date_2 = dt.datetime(2006,4,30))
 #
-#     print '\n\n\nFull left'
+#     print('\n\n\nFull left')
 #     aapl = arr.select(and_(arr.ticker=='AAPL'), date_1 = dt.datetime(1999,1,1), \
 #                                 date_2 = dt.datetime(1999,6,30))
-#     print '\n\n\nFull Outer'
+#     print('\n\n\nFull Outer')
 #     aapl = arr.select(and_(arr.ticker=='AAPL'), date_1 = dt.datetime(1998,1,05), \
 #                                 date_2 = dt.datetime(2013,8,9))
 #
@@ -214,4 +215,4 @@ def test_sql_yaml_cache():
 #     # aapl = arr.select(and_(arr.ticker=='AAPL',arr.date >= dt.datetime(2004,1,1), \
 #     #                             arr.date <= dt.datetime(2009,12,30)))
 #
-#     print aapl.head()
+#     print(aapl.head())
